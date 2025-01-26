@@ -46,10 +46,15 @@ public class JarFileSizeCalculator {
                 }
             }
 
-            // Output the results
-            System.out.println("\nTotal size of all JAR files: " + totalSize + " bytes");
-            System.out.println("Largest JAR file: " + largestFile.getName() + " (" + largestSize + " bytes)");
-            System.out.println("Smallest JAR file: " + smallestFile.getName() + " (" + smallestSize + " bytes)");
+            // Convert bytes to KB (divide by 1024)
+            double totalSizeKB = totalSize / 1024.0;
+            double largestSizeKB = largestSize / 1024.0;
+            double smallestSizeKB = smallestSize / 1024.0;
+
+            // Output the results in both bytes and KB
+            System.out.println("\nTotal size of all JAR files: " + totalSize + " bytes (" + String.format("%.2f", totalSizeKB) + " KB)");
+            System.out.println("Largest JAR file: " + largestFile.getName() + " (" + largestSize + " bytes, " + String.format("%.2f", largestSizeKB) + " KB)");
+            System.out.println("Smallest JAR file: " + smallestFile.getName() + " (" + smallestSize + " bytes, " + String.format("%.2f", smallestSizeKB) + " KB)");
 
         } else {
             System.out.println("The specified path is not a valid directory.");
