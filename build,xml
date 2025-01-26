@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="JarFileSizeCalculator" default="build" basedir=".">
+    
+    <!-- Set the directory where the Java files are located -->
+    <property name="src.dir" value="src"/>
+    
+    <!-- Set the directory where the compiled classes will go -->
+    <property name="build.dir" value="bin"/>
+    
+    <!-- Set the directory for the JAR file -->
+    <property name="dist.dir" value="dist"/>
+    
+    <!-- Set the name of the JAR file -->
+    <property name="jar.name" value="JarFileSizeCalculator.jar"/>
+
+    <!-- Compile the Java files -->
+    <target name="compile">
+        <mkdir dir="${build.dir}"/>
+        <javac srcdir="${src.dir}" destdir="${build.dir}" includeantruntime="false"/>
+    </target>
+
+    <!-- Create the JAR file -->
+    <target name="jar" depends="compile">
+        <mkdir dir="${dist.dir}"/>
+        <jar destfile="${dist.dir}/${jar.name}" basedir="${build.dir}">
+            <manifest>
+                <attribute name="Main-Class" value="JarFileSizeCalculator"/>
+            </manifest>
+        </jar>
+    </target>
+
+    <!-- Clean build directories -->
+    <target name="clean">
+        <delete dir="${build.dir}"/>
+        <delete dir="${dist.dir}"/>
+    </target>
+
+    <!-- Default target to clean and build -->
+    <target name="build" depends="clean, jar"/>
+    
+</project>
